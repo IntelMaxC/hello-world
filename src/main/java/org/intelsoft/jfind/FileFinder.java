@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author mintelisano
+ * @author Massimo Intelisano
  */
 public class FileFinder {
     

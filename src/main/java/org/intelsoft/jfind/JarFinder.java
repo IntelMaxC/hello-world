@@ -20,7 +20,7 @@ import java.util.zip.ZipInputStream;
 
 /**
  *
- * @author mintelisano
+ * @author Massimo Intelisano
  */
 public class JarFinder {
 

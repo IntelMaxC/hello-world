@@ -7,7 +7,7 @@ package org.intelsoft.jfind;
 
 /**
  *
- * @author mintelisano
+ * @author Massimo Intelisano
  */
 public class OverridePrinter {
     

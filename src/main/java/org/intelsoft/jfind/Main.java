@@ -7,37 +7,42 @@ package org.intelsoft.jfind;
 
 /**
  *
- * @author mintelisano
+ * @author Massimo Intelisano
  */
 public class Main {
     
     private static void printHelp(){
         
-        System.out.println("\n**** jfind help ****\n");
-        System.out.println("command: jfind [argument1 argument2 ....]\n");
-        System.out.println("arguments:\n");
-        System.out.println("--dir [root directory to start search]");
-        System.out.println("--path.match [portion of path to match]");
-        System.out.println("\t if empty the scan path is disabled");
-        System.out.println("--path.mid [true, false]");
-        System.out.println("\t true (default): path may not be completed");
-        System.out.println("\t false: path must be completed to end of file name");
-        System.out.println("--scan.recursive [true, false]");
-        System.out.println("\t true (default): recursive scan inside subfolder and zip files");
-        System.out.println("\t false: flat scan");
-        System.out.println("--scan.archives [comma separated zip archives to find inside]");
-        System.out.println("\t default: \"jar,war,ear,esb\"");
-        System.out.println("--text.match [text to find inside the files]");
-        System.out.println("\t if empty the scan text is disabled");
-        System.out.println("--text.files [comma separated extensions to find the text]");
-        System.out.println("\t default is \"properties,xml\"");
-        System.out.println("\t it is possible use !extension to exclude files from scan");
-        System.out.println("--text.printfound [true, false]");
-        System.out.println("\t true (default): print the line where the text is matched");
-        System.out.println("\t false: print only the file where the text is matched");
-        System.out.println("--text.ignorecase [true, false]");
-        System.out.println("\t true: search text in case not sensive mode (slower)");
-        System.out.println("\t false (default): search the exact sequence of byte (faster)");
+        System.out.println(
+                "--dir [root path to start search]\n" +
+                "\tdefault value = \".\"\n" +
+                "--scan.recursive [true, false]\n" +
+                "\ttrue = scan recursively inside sub folders and archives\n" +
+                "\tfalse = flat scan\n" +
+                "\tdefault value = true\n" +
+                "--scan.archives [comma separated list of archives extension to look inside]\n" +
+                "\tis possible to set all valid zip archives\n" +
+                "\tdefault value = \"jar,war,ear,esb\"\n" +
+                "--path.match [path to search]\n" +
+                "\tif empty the search by path is disabled\n" +
+                "--path.mid [true, false]\n" +
+                "\ttrue = returns all files contain the specified path\n" +
+                "\tfalse = returns all files the name ends exactly with the specified path\n" +
+                "\tdefalut value = true\n" +
+                "--text.match [text content to search]\n" +
+                "\tif empty the search by content is disabled\n" +
+                "--text.files [comma separated list of file extensions to search text]\n" +
+                "\tis possible to use \"!extension\" to exclude files from scan\n" +
+                "\tdefault value = \"properties,xml\"\n" +
+                "--text.ignorecase [true, false]\n" +
+                "\ttrue = match text without consider the case of characters (slow)\n" +
+                "\tfalse = match text with a byte per byte comparison (fast)\n" +
+                "\tdefault value = false\n" +
+                "--text.printfound [true, false]\n" +
+                "\ttrue = print line where text is found\n" +
+                "\tfalse = print only the files where text is found\n" +
+                "\tdefault value = true\n" +
+                "--help or -h to display help");
         
     }
     
