@@ -49,7 +49,7 @@ returns all file occurrences located under .../org/apache/...
 
 `jfind --text.match "myProperty"`
 
-returns all file occurrences of files that have the text myProperty
+returns all file occurrences that contain myProperty text
 
 ### Installation Requirements
 
