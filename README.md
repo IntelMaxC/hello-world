@@ -10,7 +10,16 @@ There are two ways to search a file:
 
 ### Command line arguments
 
+jfind [OPTIONS ...]
 
+* --dir [root path to start search]
+  * default value = "."
+* --path.match [path to search]
+  * if empty the search by path is disabled
+* --path.mid [true, false]
+  * true = returns all files contain the specified path
+  * false = returns all files the name ends exactly with the specified path
+  * defalut value = true
 
 ### Installation Requirements
 
