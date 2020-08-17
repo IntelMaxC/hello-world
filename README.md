@@ -52,7 +52,11 @@ returns all file occurrences located under .../org/apache/...
 
 returns all file occurrences that contain myProperty text
 
-### Installation Requirements
+### Installation
 
-JDK 11 or a custom JDK 11 created by jlink
+* download the release zip file
+* unzip the archive as you want
+* the content of unzipped archife, where you can find jfind.sh and jfind.bar, is your JFIND_HOME directory
+* set JFIND_HOME as environment variable to point at root folder unzipped
+* add JFIND_HOME to environment path
 
