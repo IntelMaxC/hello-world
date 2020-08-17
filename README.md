@@ -1,14 +1,32 @@
 # jfind
 a lightweight command line tool to search files inside java archives
 
-## Usage
+## Abstract
 
 There are two ways to search a file:
 
 * match by file path (ex. to find a class by the package name)
 * match by text content (ex. to find a configuration file by a property name)
 
-### Command line arguments
+## Installation
+
+### Full portable version
+
+* download the last release
+  * [jfind-0.1-win-x64.zip](https://github.com/IntelMaxC/jfind/releases/download/JFInd-0.1/jfind-0.1-win-x64.zip)
+  * jfind-0.1-linux-x64.zip (soon)
+* unzip the archive as you want
+* the content of unzipped archife, where you can find jfind.sh and jfind.bar, is your JFIND_HOME directory
+* set JFIND_HOME as environment variable to point at root folder unzipped
+* add JFIND_HOME to environment path
+
+### Runtime version
+
+* Requires JDK 14+ already installed
+* Download runtime from [here](https://github.com/IntelMaxC/jfind/releases/download/JFInd-0.1/jfind-0.1.jar)
+* To execute type `java - jar jfind-0.1.jar [OPTIONS...]`
+
+## Command line arguments
 
 `jfind [OPTIONS ...]`
 
@@ -52,11 +70,5 @@ returns all file occurrences located under .../org/apache/...
 
 returns all file occurrences that contain myProperty text
 
-### Installation
 
-* download the release zip file
-* unzip the archive as you want
-* the content of unzipped archife, where you can find jfind.sh and jfind.bar, is your JFIND_HOME directory
-* set JFIND_HOME as environment variable to point at root folder unzipped
-* add JFIND_HOME to environment path
 
