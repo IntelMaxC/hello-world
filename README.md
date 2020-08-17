@@ -1,4 +1,4 @@
-# jfind tool
+# jfind
 a lightweight command line tool to search files inside java archives
 
 ## Usage
@@ -27,6 +27,29 @@ jfind [OPTIONS ...]
   * true = returns all files contain the specified path
   * false = returns all files the name ends exactly with the specified path
   * defalut value = true
+* --text.match [text content to search]
+  * if empty the search by content is disabled
+* --text.files [comma separated list of file extensions to search text]
+  * is possible to use "!extension" to exclude files from scan
+  * default value = "properties,xml"
+* --text.ignorecase [true, false]
+  * true = match text without consider the case of characters (slow)
+  * false = match text with a byte per byte comparison (fast)
+  * default value = false
+* text.printfound [true, false]
+  * true = print line where text is found
+  * false = print only the files where text is found
+  * default value = true
+
+### examples
+
+`jfind --path.match "org.apache"`
+
+returns all file occurrences located under .../org/apache/...
+
+`jfind --text.match "myProperty"`
+
+returns all file occurrences of files that have the text myProperty
 
 ### Installation Requirements
 
