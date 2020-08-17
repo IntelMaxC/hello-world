@@ -1,2 +1,2 @@
-# hello-world
-hello world repository test, I'm Max
+# jfind tool
+a lightweight command line tool to search files inside java archives
