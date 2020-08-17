@@ -40,6 +40,7 @@ There are two ways to search a file:
   * true = print line where text is found
   * false = print only the files where text is found
   * default value = true
+* `--help or -h` to display help
 
 ### examples
 
