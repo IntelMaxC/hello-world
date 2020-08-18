@@ -19,9 +19,7 @@ There are two ways to search a file:
 
 ## Installation
 
-### Full portable version
-
-### Linux
+### Linux Full Portable Binaries
 
 Follow the instructions to install jfind under /opt folder (you can use another folder)
 
@@ -35,7 +33,7 @@ Follow the instructions to install jfind under /opt folder (you can use another 
   * add `export PATH=$PATH:$JFIND_HOME/` on .bashrc file
 * open a terminal and write `jfind` to display the help
 
-### Windows
+### Windows Full Portable Binaries
 
 Follow the instructions to install jfind under C:\jfind folder (you can use another folder)
 
@@ -45,7 +43,7 @@ Follow the instructions to install jfind under C:\jfind folder (you can use anot
 * add JFIND_HOME/ to system environment paths
 * open a terminal and write `jfind` to display the help
 
-### Runtime version
+### Only Runtime version
 
 * Requires JDK 14+ already installed
 * To execute jfind type `java -jar jfind-0.1.jar [OPTIONS...]`
