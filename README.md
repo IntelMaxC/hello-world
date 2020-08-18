@@ -16,7 +16,7 @@ There are two ways to search a file:
   * [jfind-0.1-win-x64.zip](https://github.com/IntelMaxC/jfind/releases/download/JFInd-0.1/jfind-0.1-win-x64.zip)
   * jfind-0.1-linux-x64.zip (soon)
 * unzip the archive as you want
-* the content of unzipped archife, where you can find jfind.sh and jfind.bar, is your JFIND_HOME directory
+* the content of unzipped archive, where you can find jfind.sh or jfind.bat, is your JFIND_HOME directory
 * set JFIND_HOME as environment variable to point at root folder unzipped
 * add JFIND_HOME to environment path
 
