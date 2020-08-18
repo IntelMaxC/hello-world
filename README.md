@@ -23,13 +23,13 @@ There are two ways to search a file:
 
 * unzip the archive as you want
 * the content of unzipped archive, where you can find jfind.sh or jfind.bat, is your JFIND_HOME directory
-* set JFIND_HOME as environment variable to point at root folder unzipped
-* add JFIND_HOME to environment path
+* set JFIND_HOME as environment variable to point unzipped folder root
+* add JFIND_HOME to system environment paths
 
 ### Runtime version
 
 * Requires JDK 14+ already installed
-* To execute type `java - jar jfind-0.1.jar [OPTIONS...]`
+* To execute type `java -jar jfind-0.1.jar [OPTIONS...]`
 
 ## Command line arguments
 
