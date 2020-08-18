@@ -24,7 +24,7 @@ There are two ways to search a file:
 Follow the instructions to install jfind under /opt folder (you can use another folder)
 
 * untar the archive under /opt folder
-  * cd /opt
+  * `cd /opt`
   * `tar xvzf jfind-0.1-linux-x64-portable.tar.gz`
   * the root jfind directory is /opt/jfind
 * set JFIND_HOME as environment variable to point on root diretcory
