@@ -39,8 +39,8 @@ Follow the instructions to install jfind under C:\jfind folder (you can use anot
 
 * unzip the archive under C: folder
   * the root jfind directory is C:\jfind
-* set JFIND_HOME as environment variable to point on C:\jfind diretcory
-* add JFIND_HOME/ to system environment paths
+* set `JFIND_HOME` as environment variable to point on C:\jfind diretcory
+* add `JFIND_HOME/` to system environment paths
 * open a terminal and write `jfind` to display the help
 
 ### Only Runtime version
