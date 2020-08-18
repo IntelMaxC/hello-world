@@ -12,8 +12,8 @@ There are two ways to search a file:
 
 | System | Descritption | Download | Size |
 | ---| --- | --- | --- |
-| Windows x64  | Full portable version for Win 64 bit | [jfind-0.1-win-x64-portable.zip](https://github.com/IntelMaxC/jfind/releases/download/jfind-0.1/jfind-0.1-win-x64-portable.zip) | 23 MB |
-| Linux x64  | Full portable version for Linux 64 bit | (coming soon) |  |
+| Linux x64  | Full portable version for Linux 64 bit | [jfind-0.1-linux-x64-portable.tar.gz](https://github.com/IntelMaxC/jfind/releases/download/jfind-0.1/jfind-0.1-linux-x64-portable.tar.gz) |  |
+| Windows x64  | Full portable version for Windows 64 bit | [jfind-0.1-win-x64-portable.zip](https://github.com/IntelMaxC/jfind/releases/download/jfind-0.1/jfind-0.1-win-x64-portable.zip) | 23 MB |
 | JDK 14+ | Only runtimes, required JDK 14+ already installed | [jfind-0.1.jar](https://github.com/IntelMaxC/jfind/releases/download/jfind-0.1/jfind-0.1.jar) | 0.12 MB |
 
 
@@ -21,15 +21,34 @@ There are two ways to search a file:
 
 ### Full portable version
 
-* unzip the archive as you want
-* the content of unzipped archive, where you can find jfind.sh or jfind.bat, is your JFIND_HOME directory
-* set JFIND_HOME as environment variable to point unzipped folder root
-* add JFIND_HOME to system environment paths
+### Linux
+
+Follow the instructions to install jfind under /opt folder (you can use another folder)
+
+* untar the archive under /opt folder
+  * cd /opt
+  * `tar xvzf jfind-0.1-linux-x64-portable.tar.gz`
+  * the root jfind directory is /opt/jfind
+* set JFIND_HOME as environment variable to point on root diretcory
+  * add `export JFIND_HOME="/opt/jfind"` on .bashrc file
+* add JFIND_HOME/ to system environment paths
+  * add `export PATH=$PATH:$JFIND_HOME/` on .bashrc file
+* open a terminal and write `jfind` to display the help
+
+### Windows
+
+Follow the instructions to install jfind under C:\jfind folder (you can use another folder)
+
+* unzip the archive under C: folder
+  * the root jfind directory is C:\jfind
+* set JFIND_HOME as environment variable to point on C:\jfind diretcory
+* add JFIND_HOME/ to system environment paths
+* open a terminal and write `jfind` to display the help
 
 ### Runtime version
 
 * Requires JDK 14+ already installed
-* To execute type `java -jar jfind-0.1.jar [OPTIONS...]`
+* To execute jfind type `java -jar jfind-0.1.jar [OPTIONS...]`
 
 ## Command line arguments
 
