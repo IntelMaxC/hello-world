@@ -12,9 +12,9 @@ There are two ways to search a file:
 
 | System | Descritption | Download | Size |
 | ---| --- | --- | --- |
-| Windows x64  | Full portable version for Win 64 bit | [jfind-0.1-win-x64-portable.zip](https://github.com/IntelMaxC/jfind/releases/download/JFInd-0.1/jfind-0.1-win-x64-portable.zip) | 23 MB |
+| Windows x64  | Full portable version for Win 64 bit | [jfind-0.1-win-x64-portable.zip](https://github.com/IntelMaxC/jfind/releases/download/jfind-0.1/jfind-0.1-win-x64-portable.zip) | 23 MB |
 | Linux x64  | Full portable version for Linux 64 bit | (coming soon) |  |
-| JDK 14+ | Only runtimes, required JDK 14+ already installed | [jfind-0.1.jar](https://github.com/IntelMaxC/jfind/releases/download/JFInd-0.1/jfind-0.1.jar) | 0.12 MB |
+| JDK 14+ | Only runtimes, required JDK 14+ already installed | [jfind-0.1.jar](https://github.com/IntelMaxC/jfind/releases/download/jfind-0.1/jfind-0.1.jar) | 0.12 MB |
 
 
 ## Installation
