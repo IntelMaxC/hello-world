@@ -67,6 +67,7 @@ public class FinderEnv {
         this.textPrintLine = true;
         this.textIgnoreCase = false;
         this.validArchive = new String[] {"jar", "ear", "esb", "war"};
+        this.dir = ".";
     }
 
     public void setDir(String dir) {
