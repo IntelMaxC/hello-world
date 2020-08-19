@@ -1,5 +1,5 @@
 # jfind
-a lightweight command line tool to search files inside java archives
+a lightweight command line tool to search files and class inside java archives
 
 ## Abstract
 
