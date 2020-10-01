@@ -86,11 +86,11 @@ Follow the instructions to install jfind under C:\jfind folder (you can use anot
 
 ### examples
 
-`jfind --path "org.apache"`
+`jfind org.apache`
 
 returns all file occurrences located under .../org/apache/...
 
-`jfind --text "myProperty"`
+`jfind --text myProperty`
 
 returns all file occurrences that contain myProperty text
 
