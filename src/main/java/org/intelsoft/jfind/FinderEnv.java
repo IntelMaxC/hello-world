@@ -5,6 +5,10 @@
  */
 package org.intelsoft.jfind;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  *
  * @author Massimo Intelisano
@@ -13,7 +17,8 @@ public class FinderEnv {
     
     private String dir;
     private boolean recursive;
-    private String [] validArchive;
+    private List<String> validArchive;
+    private boolean verbose;
     
     private boolean pathToFind;
     private String pathMatch;
@@ -23,7 +28,7 @@ public class FinderEnv {
     private boolean textToFind;
     private String textMatch;
     private String textFiles;
-    private String [] fileExtension;
+    private List<String> fileExtension;
     private boolean textPrintLine;
     private String textLineFound;
     private boolean textIgnoreCase;
@@ -33,7 +38,7 @@ public class FinderEnv {
         if (this.pathMatch != null && this.pathMatch.trim().length() > 0){
             
             this.pathToFind = true;
-            this.pathMatchRegEx = "(.*)" + this.pathMatch.replace(".", "/");
+            this.pathMatchRegEx = "(.*)" + this.pathMatch;
             
             if (this.pathMid){
                 this.pathMatchRegEx += "(.*)";
@@ -49,8 +54,18 @@ public class FinderEnv {
         
         if (this.textMatch != null && this.textMatch.trim().length() > 0){
             
+            if (this.textFiles.startsWith("+")){
+                
+                this.textFiles = this.textFiles.substring(1);
+                
+                List<String> toAdd = Arrays.asList(this.textFiles.split(","));
+                this.fileExtension.addAll(toAdd);
+                
+            }else{
+                this.fileExtension = Arrays.asList(this.textFiles.split(","));
+            }
+            
             this.textToFind = true;
-            this.fileExtension = this.textFiles.split(",");
             
         }else{
             this.textToFind = false;
@@ -66,8 +81,9 @@ public class FinderEnv {
         this.textFiles = "properties,xml";
         this.textPrintLine = true;
         this.textIgnoreCase = false;
-        this.validArchive = new String[] {"jar", "ear", "esb", "war"};
+        this.validArchive = new ArrayList<>(Arrays.asList(new String []{"jar", "ear", "esb", "war", "sar", "zip"}));
         this.dir = ".";
+        this.verbose = false;
     }
 
     public void setDir(String dir) {
@@ -132,7 +148,11 @@ public class FinderEnv {
         }
     }
 
-    public String[] getFileExtension() {
+    public String getTextFiles() {
+        return textFiles;
+    }
+    
+    public List<String> getFileExtension() {
         return fileExtension;
     }
     
@@ -191,7 +211,16 @@ public class FinderEnv {
     public void setValidArchives(String archiveExtensions){
         
         if (archiveExtensions != null && archiveExtensions.trim().length() > 0){
-            this.validArchive = archiveExtensions.split(",");
+            
+            if (archiveExtensions.startsWith("+")){
+                
+                List<String> toAdd = Arrays.asList(archiveExtensions.substring(1).split(","));
+                this.validArchive.addAll(toAdd);
+                
+            }else{
+                this.validArchive = Arrays.asList(archiveExtensions.split(","));
+            }
+            
         }
         
     }
@@ -208,6 +237,26 @@ public class FinderEnv {
         
         return false;
         
+    }
+
+    public String getValidArchives() {
+        
+        String s = "";
+        
+        for (String a : validArchive){
+            s += (a + ",");
+        }
+        
+        return s.substring(0, s.length() - 1);
+        
+    }
+    
+    public void setVerbose(boolean verbose) {
+        this.verbose = verbose;
+    }
+
+    public boolean isVerbose() {
+        return verbose;
     }
     
 }

@@ -27,46 +27,44 @@ public class JarFinder {
     private static InputStream extractFromArchive(ZipInputStream zis) {
 
         try {
-            
+
             //FileOutputStream fos = new FileOutputStream("ggg.jar");
-            
             byte[] buffer = new byte[2048];
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            
+
             int len = 0;
             while ((len = zis.read(buffer)) > 0) {
                 baos.write(buffer, 0, len);
                 //fos.write(buffer, 0, len);
             }
-            
+
             byte[] bytes = baos.toByteArray();
             InputStream isret = new ByteArrayInputStream(bytes);
-            
+
             //fos.close();
-            
             return isret;
-            
+
         } catch (IOException ex) {
             Logger.getLogger(JarFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return null;
 
     }
-    
-    private static boolean findText(ZipInputStream zis, FinderEnv env){
-        
+
+    private static boolean findText(InputStream zis, FinderEnv env) {
+
         String text = env.getTextMatch().toLowerCase();
         BufferedReader br = new BufferedReader(new InputStreamReader(zis));
-        
-        try{
-        
+
+        try {
+
             String line;
-            while ((line = br.readLine()) != null){
+            while ((line = br.readLine()) != null) {
 
-                if (line.toLowerCase().contains(text)){
+                if (line.toLowerCase().contains(text)) {
 
-                    if (env.isTextPrintLine()){
+                    if (env.isTextPrintLine()) {
                         env.setTextLineFound(line);
                     }
 
@@ -75,93 +73,96 @@ public class JarFinder {
                 }
 
             }
-            
-        }catch (IOException ex){
+
+        } catch (IOException ex) {
             Logger.getLogger(JarFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return false;
-        
+
     }
-    
-    private static boolean findBytes(ZipInputStream zis, FinderEnv env){
-        
-        byte [] text = env.getTextMatch().getBytes();
-        
+
+    private static boolean findBytes(InputStream zis, FinderEnv env) {
+
+        byte[] text = env.getTextMatch().getBytes();
+
         String line = "";
-        
+
         int k = 0;
         boolean found = false;
-        
+
         try {
-            
+
             int c;
             while ((c = zis.read()) > -1) {
-                
+
                 char cc = (char) c;
-                
-                if (env.isTextPrintLine()){
-                    
+
+                if (env.isTextPrintLine()) {
+
                     if (cc == '\n') {
-                        
+
                         if (found) {
                             env.setTextLineFound(line);
                             return true;
                         }
-                        
+
                         line = "";
-                        
+
                     } else {
                         line += cc;
                     }
-                    
+
                 }
-                
-                if ((k < text.length) && (text[k] == cc)){
+
+                if ((k < text.length) && (text[k] == cc)) {
                     k++;
-                }else{
+                } else {
                     k = 0;
                 }
-                
-                if (k == text.length){
-                    
-                    if (env.isTextPrintLine()){
+
+                if (k == text.length) {
+
+                    if (env.isTextPrintLine()) {
                         found = true;
-                    }else{
+                    } else {
                         return true;
                     }
-                    
+
                 }
-                
+
             }
-            
-        }catch (IOException ex){
+
+        } catch (IOException ex) {
             Logger.getLogger(JarFinder.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        if (env.isTextPrintLine() && found){
+
+        if (env.isTextPrintLine() && found) {
             env.setTextLineFound(line);
         }
-        
+
         return found;
-        
+
     }
 
     private static void scanIS(String root, InputStream is, FinderEnv env) {
-        
+
         try {
 
             ZipEntry ze;
             ZipInputStream zis = new ZipInputStream(is);
 
             while ((ze = zis.getNextEntry()) != null) {
-                
+
                 if (!ze.isDirectory()) {
-                    
-                    OverridePrinter.getInstance().print("scanning " + root + "/" +ze.getName());
-                    
+
+                    if (env.isVerbose()) {
+                        OverridePrinter.getInstance().print("scanning " + root + "/" + ze.getName());
+                    }
+
                     String entryName = ze.getName();
-                    
+                    analyzeEntry(root, entryName, zis, env);
+                    /*
                     if (env.isTextToFind()){
                         
                         if (env.isExtensionToLook(entryName)){
@@ -188,29 +189,29 @@ public class JarFinder {
                     
                     if (env.isPathToFind()){
                         
-                        if (entryName.matches(env.getPathMatchRegEx())){
+                        if (entryName.replaceAll("/", ".").matches(env.getPathMatchRegEx())){
                             OverridePrinter.getInstance().println(" => PATH: " + root + "/" + entryName);
                         }
                         
                     }
-                    
+                     */
                     if (env.isValidArchive(entryName)) {
-                        
-                        if (env.isRecursive()){
-                            
+
+                        if (env.isRecursive()) {
+
                             InputStream isFile = extractFromArchive(zis);
                             scanIS(root + "/" + entryName, isFile, env);
 
-                            if (isFile != null){
+                            if (isFile != null) {
                                 isFile.close();
                             }
-                            
+
                         }
-                        
+
                     }
-                    
+
                 }
-                
+
             }
 
         } catch (IOException ex) {
@@ -219,23 +220,59 @@ public class JarFinder {
 
     }
 
-    public static void scan(String root, String path, FinderEnv env) {
+    public static void scan(String rootFilePath, FinderEnv env) {
 
         FileInputStream fis = null;
         try {
-            fis = new FileInputStream(path);
-            scanIS(root, fis, env);
+            fis = new FileInputStream(rootFilePath);
+            scanIS(rootFilePath, fis, env);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(JarFinder.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                if (fis != null)
+                if (fis != null) {
                     fis.close();
+                }
             } catch (IOException ex) {
                 Logger.getLogger(JarFinder.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
     }
-    
+
+    public static void analyzeEntry(String root, String entryName, InputStream is, FinderEnv env) {
+        
+        if (env.isTextToFind()) {
+
+            if (env.isExtensionToLook(entryName)) {
+
+                boolean found;
+
+                if (env.isTextIgnoreCase()) {
+                    found = findText(is, env);
+                } else {
+                    found = findBytes(is, env);
+                }
+
+                if (found) {
+                    OverridePrinter.getInstance().println(" => TEXT: " + root + (root.equals("") ? "": "/") + entryName);
+                    if (env.isTextPrintLine()) {
+                        OverridePrinter.getInstance().println("\n          ...\n          " + env.getTextLineFound() + "\n          ...\n");
+                    }
+                }
+
+            }
+
+        }
+
+        if (env.isPathToFind()) {
+
+            if (entryName.replaceAll("/", ".").matches(env.getPathMatchRegEx())) {
+                OverridePrinter.getInstance().println(" => PATH: " + root + (root.equals("") ? "": "/") + entryName);
+            }
+
+        }
+
+    }
+
 }
